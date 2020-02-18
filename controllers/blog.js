@@ -1,20 +1,23 @@
-const { getBlogsInDb } = require('../modules/blog')
+const {
+  searchContentFromArticleIdByDb,
+  getBlogTitlesByDb
+} = require("../modules/blog");
 
-async function getBlogs(query) {
+async function getBlogsList(query) {
   try {
-    const res = await getBlogsInDb(query)
+    const res = await getBlogTitlesByDb(query);
     return {
       errno: 0,
-      message: '',
+      message: "",
       data: res
-    }
-  } catch(e) {
+    };
+  } catch (e) {
     return {
       errno: 1,
-      message: 'get Blog error',
+      message: "get Blog error",
       data: e
-    }
+    };
   }
 }
 
-module.exports = {getBlogs}
+module.exports = { getBlogsList };

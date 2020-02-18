@@ -1,7 +1,7 @@
 // module写sql的部分
 const Blog = require("../schema");
 
-async function getBlogTitles() {
+async function getBlogTitlesByDb() {
   const blogs = await Blog.findAll({
     // where: query,
     attributes: ['title','time','articleId']
@@ -9,14 +9,17 @@ async function getBlogTitles() {
   return blogs;
 }
 
-// async function searchContentFromArticleId(id) {
-//   const content = await Blog.findAll({
-//     where: {
-//       select
-//     }
-//   })
-// }
+async function searchContentFromArticleIdByDb(id) {
+  const content = await Blog.findOne({
+    where: {
+      articleId: id
+    },
+    attributes: ['content']
+  })
+  return content
+}
 
 module.exports = {
-  getBlogTitles
+  getBlogTitlesByDb,
+  searchContentFromArticleIdByDb
 };
