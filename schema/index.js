@@ -6,7 +6,8 @@ const Blog = sequelize.define(
   {
     id: {
       type: Sequelize.STRING(50),
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     time: Sequelize.BIGINT(20),
     title: Sequelize.STRING(45),

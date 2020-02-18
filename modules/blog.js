@@ -18,7 +18,20 @@ async function searchContentFromArticleIdByDb(id) {
   return content
 }
 
+async function createArticleByDb(title,content) {
+  const time = new Date().getTime()
+  const articleId = `${new Date().toLocaleDateString()}/${title}`
+  const res = await Blog.create({
+    time,
+    title,
+    articleId,
+    content
+  })
+  return res
+}
+
 module.exports = {
   getBlogTitlesByDb,
+  createArticleByDb,
   searchContentFromArticleIdByDb
 };
