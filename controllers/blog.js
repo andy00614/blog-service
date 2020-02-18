@@ -2,22 +2,24 @@ const {
   searchContentFromArticleIdByDb,
   getBlogTitlesByDb
 } = require("../modules/blog");
+const { successModule, failModule } = require("./resModule");
 
 async function getBlogsList(query) {
   try {
     const res = await getBlogTitlesByDb(query);
-    return {
-      errno: 0,
-      message: "",
-      data: res
-    };
+    return successModule(res);
   } catch (e) {
-    return {
-      errno: 1,
-      message: "get Blog error",
-      data: e
-    };
+    return failModule(e);
   }
 }
 
-module.exports = { getBlogsList };
+async function getContentById(id) {
+  try {
+    const res = await searchContentFromArticleIdByDb(id);
+    return successModule(res);
+  } catch (e) {
+    return failModule(e);
+  }
+}
+
+module.exports = { getBlogsList, getContentById };

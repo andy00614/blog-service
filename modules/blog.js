@@ -14,7 +14,6 @@ async function searchContentFromArticleIdByDb(id) {
     where: {
       articleId: id
     },
-    attributes: ['content']
   })
   return content
 }
