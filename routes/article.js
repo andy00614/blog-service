@@ -2,8 +2,9 @@ const router = require("koa-router")();
 
 const {
   getBlogsList,
-  getContentById,
-  creatArticle
+  creatArticle,
+  removeArticle,
+  getContentById
 } = require("../controllers/blog");
 
 router.get("/getList", async (ctx, next) => {
@@ -20,9 +21,14 @@ router.get("/searchContent", async (ctx, next) => {
 
 router.post("/createArticle", async (ctx, next) => {
   const params = ctx.request.body;
-  ctx.body = params;
   const response = await creatArticle(params.title, params.content);
   ctx.body = response;
 });
+
+router.get('/removeArticle',async(ctx,next) => {
+  const {articleId} = ctx.request
+  const response = await removeArticle(articleId)
+  ctx.body = response
+})
 
 module.exports = router;

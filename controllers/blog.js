@@ -1,7 +1,8 @@
 const {
-  searchContentFromArticleIdByDb,
   getBlogTitlesByDb,
-  createArticleByDb
+  createArticleByDb,
+  removeArticleByDb,
+  searchContentFromArticleIdByDb
 } = require("../modules/blog");
 const { successModule, failModule } = require("./resModule");
 
@@ -23,13 +24,22 @@ async function getContentById(id) {
   }
 }
 
-async function creatArticle(title,content) {
+async function creatArticle(title, content) {
   try {
-    const res = await createArticleByDb(title,content);
+    const res = await createArticleByDb(title, content);
     return successModule(res);
   } catch (e) {
     return failModule(e);
   }
 }
 
-module.exports = { getBlogsList, getContentById, creatArticle };
+async function removeArticle(title, content) {
+  try {
+    const res = await removeArticleByDb(title, content);
+    return successModule(res);
+  } catch (e) {
+    return failModule(e);
+  }
+}
+
+module.exports = { getBlogsList, getContentById, creatArticle, removeArticle };

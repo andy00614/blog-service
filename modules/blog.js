@@ -30,8 +30,15 @@ async function createArticleByDb(title,content) {
   return res
 }
 
+async function removeArticleByDb(id) {
+  const target = await searchContentFromArticleIdByDb(id)
+  const res = await target.destroy();
+  return res
+}
+
 module.exports = {
   getBlogTitlesByDb,
   createArticleByDb,
+  removeArticleByDb,
   searchContentFromArticleIdByDb
 };
