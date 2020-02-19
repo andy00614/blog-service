@@ -6,5 +6,7 @@ const Password = sequelize.define("password", {
     type: Sequelize.STRING(20),
     primaryKey: true
   }
+},{
+  timestamps: false
 });
 module.exports = Password;

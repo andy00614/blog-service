@@ -32,6 +32,9 @@ async function createArticleByDb(title,content) {
 
 async function removeArticleByDb(id) {
   const target = await searchContentFromArticleIdByDb(id)
+  if(!target) {
+    return Promise.reject('没找到该id')
+  }
   const res = await target.destroy();
   return res
 }

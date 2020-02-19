@@ -25,9 +25,9 @@ router.post("/createArticle", async (ctx, next) => {
   ctx.body = response;
 });
 
-router.get('/removeArticle',async(ctx,next) => {
-  const {articleId} = ctx.request.query
-  const response = await removeArticle(articleId)
+router.post('/removeArticle',async(ctx,next) => {
+  const {articleId,password} = ctx.request.body
+  const response = await removeArticle(articleId,password)
   ctx.body = response
 })
 

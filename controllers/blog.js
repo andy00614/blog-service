@@ -5,6 +5,7 @@ const {
   searchContentFromArticleIdByDb
 } = require("../modules/blog");
 const { successModule, failModule } = require("./resModule");
+const Password = require('../schema/password')
 
 async function getBlogsList(query) {
   try {
@@ -33,9 +34,21 @@ async function creatArticle(title, content) {
   }
 }
 
-async function removeArticle(title, content) {
+async function testPassword(password) {
+  const token = await Password.findOne({
+    where: {
+      password
+    }
+  })
+  if(!token || !token.password) {
+    return Promise.reject('密码错误')
+  }
+}
+
+async function removeArticle(id,password) {
   try {
-    const res = await removeArticleByDb(title, content);
+    await testPassword(password)
+    const res = await removeArticleByDb(id);
     return successModule(res);
   } catch (e) {
     return failModule(e);
