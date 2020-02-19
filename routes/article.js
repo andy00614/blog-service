@@ -26,7 +26,7 @@ router.post("/createArticle", async (ctx, next) => {
 });
 
 router.get('/removeArticle',async(ctx,next) => {
-  const {articleId} = ctx.request
+  const {articleId} = ctx.request.query
   const response = await removeArticle(articleId)
   ctx.body = response
 })
