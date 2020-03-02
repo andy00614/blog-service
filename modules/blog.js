@@ -20,7 +20,7 @@ async function searchContentFromArticleIdByDb(id) {
 
 async function createArticleByDb(title,content) {
   const time = new Date().getTime()
-  const articleId = `${new Date().toLocaleDateString()}/${title}`
+  const articleId = `${new Date().toLocaleDateString()}-${title}`
   const res = await Blog.create({
     time,
     title,

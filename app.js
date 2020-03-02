@@ -12,6 +12,7 @@ const articles = require('./routes/article')
 
 const {sequelize} = require('./config/db')
 const Blog = require('./schema')
+const cors = require('koa-cors');
 
 // error handler
 onerror(app)
@@ -31,6 +32,7 @@ onerror(app)
 // testSql()
 
 // middlewares
+app.use(cors())
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))
